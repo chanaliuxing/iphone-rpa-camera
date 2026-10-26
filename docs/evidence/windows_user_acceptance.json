@@ -1,0 +1,14 @@
+{
+  "status": "G0_WINDOWS_GO",
+  "verification_source": "user_report",
+  "user_confirmed_working": true,
+  "scope": "Windows camera acceptance reported complete and usable by the user",
+  "independently_executed_by_documentation_agent": false,
+  "raw_windows_evidence_provided": false,
+  "windows_version": null,
+  "python_version": null,
+  "capture_count": null,
+  "resolution": null,
+  "latency_statistics": null,
+  "historical_mac_evidence": "mac_g0_summary.json retains the original Mac-run snapshot; its Windows NOT_RUN field predates this user confirmation"
+}

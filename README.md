@@ -10,7 +10,7 @@
 
 - iPhone 7 Plus / iOS 15.8.6、Mac：真实 JPEG 4032×3024；12 连拍 12/12 成功；停止后明确失败，重启后恢复；错误 Token 返回 403。
 - 连拍延迟 p50 0.555 秒、p95 1.236 秒。这是单次现场 POC，不能推断所有网络或设备都达到该性能。
-- Windows：**NOT_RUN**；提供相同客户端和复现步骤，未声称 Windows 实测通过。
+- Windows：**已验收可用（用户确认）**。用户已在 Windows 完成实际验收并确认可用；本仓库未收录该次 Windows 原始日志、照片或延迟统计。
 - 尚未接入微信 Reader、OCR、ESP32 或业务状态机。
 
 ## 工程结构
@@ -71,7 +71,7 @@ Turn an idle iPhone into an on-demand camera on your local network. The native S
 
 - **iPhone 7 Plus / iOS 15.8.6 with a Mac:** real 4032×3024 JPEGs; 12 out of 12 consecutive captures succeeded; requests failed explicitly after stopping the service and succeeded again after restarting it; an incorrect token returned HTTP 403.
 - Capture latency during that sequence: **p50 0.555 seconds, p95 1.236 seconds**. These results come from one on-device proof of concept and do not guarantee the same performance on other devices or networks.
-- **Windows: NOT_RUN.** The same client and reproduction steps are provided, but Windows has not passed an on-device test.
+- **Windows: accepted and working (user-confirmed).** The user completed Windows acceptance testing and confirmed it works. Raw Windows logs, photos, and latency measurements from that run are not included in this repository.
 - No integration with the WeChat Reader, OCR, ESP32, or business state machine has been performed.
 
 ### Repository layout
