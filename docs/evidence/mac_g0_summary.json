@@ -1,0 +1,64 @@
+{
+  "attempts": 12,
+  "successes": 12,
+  "failures": 0,
+  "files": 12,
+  "nonempty_files": 12,
+  "unique_capture_ids": 12,
+  "unique_jpeg_sha256": 12,
+  "p50_sec": 0.555,
+  "p95_sec": 1.236,
+  "jpeg_sizes": [
+    2133548,
+    1466383,
+    1923150,
+    1957953,
+    1722281,
+    1949559,
+    2139303,
+    1785165,
+    1899037,
+    1943968,
+    1839881,
+    2041382
+  ],
+  "latencies_sec": [
+    1.192,
+    1.162,
+    0.863,
+    0.507,
+    0.369,
+    1.06,
+    0.604,
+    1.29,
+    0.471,
+    0.405,
+    0.487,
+    0.386
+  ],
+  "timestamps_monotonic": true,
+  "request_intervals_sec": [
+    5.0,
+    5.003,
+    5.005,
+    5.004,
+    5.004,
+    5.004,
+    5.003,
+    5.004,
+    5.001,
+    5.002,
+    5.002
+  ],
+  "resolution": {
+    "width": 4032,
+    "height": 3024
+  },
+  "mac_result": "G0_MAC_CAMERA_GO",
+  "windows_result": "G0_WINDOWS_NOT_RUN",
+  "privacy": "Derived statistics only; raw photos and raw device logs intentionally excluded.",
+  "unit_tests": {
+    "passed": 4,
+    "failed": 0
+  }
+}

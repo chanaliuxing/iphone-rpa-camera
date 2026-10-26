@@ -1,0 +1,24 @@
+name: RPASnapshot
+options:
+  deploymentTarget:
+    iOS: "15.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  RPASnapshot:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: App
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "com.example.rpa-snapshot.poc"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSCameraUsageDescription: "用于按电脑请求拍摄屏幕照片，以供本地 RPA 测试"
+        INFOPLIST_KEY_NSLocalNetworkUsageDescription: "允许通过同一局域网连接 Mac 或 Windows 并按需返回照片"
+        INFOPLIST_KEY_CFBundleDisplayName: "RPA Camera"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"

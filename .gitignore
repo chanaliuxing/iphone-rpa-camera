@@ -1,0 +1,33 @@
+# Credentials, local configuration and signing materials
+.env
+.env.*
+!.env.example
+*token*
+*.p12
+*.p8
+*.pem
+*.key
+*.mobileprovision
+*.provisionprofile
+*.cer
+# Generated build outputs and device evidence
+output/
+DerivedData/
+*.xcarchive/
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+*.ipa
+*.dmg
+*.zip
+*.jpg
+*.jpeg
+*.png
+*.heic
+*.mp4
+*.jsonl
+/evidence/
+# Python and macOS
+__pycache__/
+*.pyc
+.DS_Store
