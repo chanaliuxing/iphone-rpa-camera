@@ -1,5 +1,9 @@
 # iPhone RPA Camera
 
+[中文](#中文) · [English](#english)
+
+## 中文
+
 将闲置 iPhone 作为局域网按需拍照设备。原生 Swift App 收到一次有效请求才拍摄一张新的 JPEG，Mac / Windows 使用同一个 Python 标准库客户端拉取照片。适合作为本地 RPA 的 Camera Adapter 候选。
 
 ## 已验证状态
@@ -56,3 +60,71 @@ python3 -m unittest discover -s tests -v
 - [历史交付说明](docs/archive/)
 
 HTTP Token 以明文在 LAN 传输，只在可信私有网络使用，不开放公网端口。App 离开前台会停止服务。免费 Personal Team 签名通常约 7 天需续签；Token 本身没有实现 7 天自动失效。此项目是 POC，不能当作免维护的生产摄像头方案。
+
+---
+
+## English
+
+Turn an idle iPhone into an on-demand camera on your local network. The native Swift app captures a fresh JPEG for each valid request. macOS and Windows use the same Python standard-library client to retrieve photos. This is a candidate Camera Adapter for local robotic process automation (RPA).
+
+### Verified status
+
+- **iPhone 7 Plus / iOS 15.8.6 with a Mac:** real 4032×3024 JPEGs; 12 out of 12 consecutive captures succeeded; requests failed explicitly after stopping the service and succeeded again after restarting it; an incorrect token returned HTTP 403.
+- Capture latency during that sequence: **p50 0.555 seconds, p95 1.236 seconds**. These results come from one on-device proof of concept and do not guarantee the same performance on other devices or networks.
+- **Windows: NOT_RUN.** The same client and reproduction steps are provided, but Windows has not passed an on-device test.
+- No integration with the WeChat Reader, OCR, ESP32, or business state machine has been performed.
+
+### Repository layout
+
+```text
+iOS/                             SwiftUI + AVFoundation + Network server
+Host/poll_snapshots.py            Shared macOS / Windows Python client
+tests/test_receiver.py           Four client tests that do not require an iPhone
+build_free_ipa.command           Build and package an unsigned IPA
+build_unsigned_archive.command  Build an unsigned Xcode archive
+docs/                            Installation, protocol, acceptance, Windows,
+                                 privacy, and historical documentation
+```
+
+### Quick start
+
+1. Follow the [installation guide](docs/INSTALL.md) to build, sign with your own account, and install the app.
+2. Connect the phone and computer to the same trusted Wi-Fi network. Open the app, grant camera access, and tap **启动局域网拍照服务** (“Start LAN photo service”). The interface scrolls vertically. Keep the app in the foreground and the phone unlocked; USB can supply power.
+3. Find the phone’s current private IPv4 address in its Wi-Fi settings and obtain the token displayed in the app. Do not put the token in a URL, Git, or public logs.
+4. Run the following in the **same Bash session** on the Mac. Replace the example IP in both variables with the phone’s actual address:
+
+```bash
+export RPA_CAMERA_URL='http://192.168.0.10:8080'
+read -r -s -p 'Camera Token: ' RPA_SNAPSHOT_TOKEN; echo
+export RPA_SNAPSHOT_TOKEN
+export NO_PROXY='192.168.0.10,localhost,127.0.0.1'
+python3 Host/poll_snapshots.py --url "$RPA_CAMERA_URL" --count 1 --output latest.jpg
+python3 Host/poll_snapshots.py --url "$RPA_CAMERA_URL" --interval 5 --count 12 --output latest.jpg --archive evidence/frames --log evidence/poll.jsonl
+unset RPA_SNAPSHOT_TOKEN
+```
+
+The hidden-input command above uses Bash syntax. If your default shell is zsh, run `bash` first. The client requires **Python 3.10+** and no pip packages.
+
+Run the client tests with:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+The only endpoint is **`GET /shot.jpg`**, authenticated through the **`X-RPA-Token`** request header. `/snapshot.jpg` and tokens in query parameters are not supported. On failure, the client exits with a nonzero status and leaves the previous photo on disk. Consumers must check capture success; the existence of `latest.jpg` does not prove that a new photo was captured.
+
+### Documentation
+
+The linked detailed documents are currently in Chinese; this README includes both languages.
+
+- [Build and install with free-account signing](docs/INSTALL.md)
+- [HTTP protocol and troubleshooting](docs/PROTOCOL.md)
+- [Real iPhone G0 acceptance report — sanitized](docs/G0_REAL_IPHONE_REPORT.md)
+- [Reproducible acceptance procedure](docs/ACCEPTANCE.md)
+- [Surface Windows reproduction steps](docs/WINDOWS_G0_STEPS.md)
+- [Public repository privacy handling](docs/PRIVACY.md)
+- [Historical delivery notes](docs/archive/)
+
+### Operating limits
+
+The HTTP token travels in plaintext over the LAN. Use a trusted private network and do not expose the service to the public internet. The service stops when the app leaves the foreground. Free Personal Team signing typically requires renewal after about seven days; the token itself does **not** automatically expire after seven days. This project is a proof of concept, not a maintenance-free production camera system.
