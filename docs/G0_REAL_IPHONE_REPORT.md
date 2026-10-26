@@ -1,6 +1,10 @@
 # iPhone 7 Plus G0 真实验收（公开脱敏版）
 
-结论：**G0_MAC_CAMERA_GO**；**G0_WINDOWS_NOT_RUN**。
+当前结论：**G0_MAC_CAMERA_GO**；**G0_WINDOWS_GO（用户确认）**。
+
+Windows 状态更新：用户已反馈实际验收完成、可以使用。本次没有提供 Windows 原始日志、照片、运行次数或延迟统计；Windows 通过依据为用户验收反馈，与下文由 Mac 现场记录支持的数值结果分开。
+
+Windows status update: **G0_WINDOWS_GO (user-confirmed)**. The user reports successful Windows acceptance testing. Raw Windows logs, photos, run counts, and latency measurements were not supplied with this update; Mac measurements below must not be attributed to Windows.
 
 ## 环境与构建
 
@@ -19,7 +23,7 @@
 | 停止负测 | 连接被拒绝，退出码 1，status=error，旧 latest.jpg 哈希未变 |
 | 重启恢复 | 成功，1,985,880 bytes，约 0.77 秒，新 ID 与新文件哈希 |
 | 错误 Token | 一次请求返回 HTTP 403 |
-| Windows | NOT_RUN；未取得 Surface 的真实样本 |
+| Windows | 已验收可用（用户确认）；未向本仓库提供该次原始日志或性能数据 |
 
 12 连拍成功率 100%，p50/p95 从 JSONL 逐条延迟线性插值得出。正确 Token 的运行中拍照请求共 15/15 成功（curl 1、Python 单拍 1、连拍 12、恢复 1）。初期连接失败、一次大小写处理错误的 403、停止负测和故意错误 Token 请求分别保留分类，不混入该分母。
 
@@ -54,4 +58,4 @@
 
 现有真实照片可作为后续屏幕 OCR 的候选输入；部分汉字可辨，但有反光、倾斜和部分软焦。未运行微信 OCR、未测识别成功率、未证明优于 USB 摄像头，未接入微信 Reader 或修改 ESP32。
 
-Mac 核心 GO 条件已满足。Windows 和生产可靠性仍需独立实测，不能由 Mac POC 外推。
+Mac 核心 GO 条件已满足；Windows 已由用户独立验收并确认可用。两者证据来源不同，不将 Mac 延迟数据移用于 Windows。生产可靠性仍需单独验证，不能由本次 POC 外推。

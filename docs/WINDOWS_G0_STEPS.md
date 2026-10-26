@@ -1,6 +1,10 @@
-# Surface Windows 复现（NOT_RUN）
+# Windows 验收与 Surface 复现 / Windows acceptance and Surface reproduction
 
-Windows 尚未在本次验收中实际运行。复制/克隆同一仓库，安装 Python 3.10+；不需要 pip 包或另一款 iOS App。手机和 Surface 在同一可信 Wi-Fi，手机 RPA Camera 保持前台并启动服务。
+**当前状态：G0_WINDOWS_GO（用户确认）**。用户已明确反馈 Windows 验收完成、可以使用。此结论来自用户的实际验收反馈；本次文档更新没有代为运行 Windows，也未收到该次原始 JSONL、照片、Python/Windows 版本或延迟统计，故不补写次数、分辨率和性能数据。
+
+**Current status: G0_WINDOWS_GO (user-confirmed).** The user reports that Windows acceptance testing is complete and the camera works. This documentation update did not execute the Windows test or receive its raw JSONL, photos, software versions, or latency measurements. No Windows sample counts, resolution, or performance figures are inferred.
+
+以下命令用于后续复现，并非原始验收运行记录。复制/克隆同一仓库，安装 Python 3.10+；不需要 pip 包或另一款 iOS App。手机和 Surface 在同一可信 Wi-Fi，手机 RPA Camera 保持前台并启动服务。
 
 在仓库根目录运行 PowerShell（IP 为示例，替换为手机当前私有地址）：
 
